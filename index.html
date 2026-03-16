@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandy Gaming Store</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#0e0e18;
+color:white;
+}
+
+/* HEADER */
+
+header{
+background:#111;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+border-bottom:2px solid #6f00ff;
+}
+
+header h1{
+color:#6f00ff;
+margin:0;
+cursor:pointer;
+font-size:26px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-size:14px;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#00e6ff;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:70px 20px;
+background:url("https://i.ibb.co/vX4sKJc/gaming-bg.jpg") center/cover no-repeat;
+}
+
+.hero h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+/* GRID */
+
+.games,
+.game-packages{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:40px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+/* CARDS */
+
+.game-card,
+.package-card{
+background:#1a1a2e;
+border:2px solid #6f00ff;
+border-radius:12px;
+padding:20px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.game-card:hover,
+.package-card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 15px #6f00ff;
+}
+
+.game-card img{
+width:90px;
+}
+
+.package-card img{
+width:70px;
+}
+
+/* BUTTON */
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:6px;
+background:#6f00ff;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#00e6ff;
+color:#111;
+}
+
+/* INPUT */
+
+input{
+padding:10px;
+width:90%;
+max-width:350px;
+border-radius:6px;
+border:none;
+margin-top:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+text-align:center;
+padding:20px;
+margin-top:40px;
+border-top:2px solid #6f00ff;
+}
+
+footer p{
+font-size:13px;
+margin:5px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+color:white;
+box-shadow:0 0 15px #25D366;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h2{
+font-size:28px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.games,
+.game-packages{
+grid-template-columns:1fr;
+}
+
+}
+
+#game-page{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 onclick="backHome()">Sandy Gaming Store</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#how">How To Order</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h2>Fast & Secure Game Top-Up</h2>
+<p>Instant delivery for your favorite games</p>
+</section>
+
+<!-- GAME SELECTION -->
+
+<section class="games" id="games">
+
+<div class="game-card" onclick="openGame('Free Fire')">
+<img src="https://gaming.com.np/assets/uploads/category/67518ee19c55d1733398241.webp">
+<h3>Garena Free Fire</h3>
+<p>Top up Diamonds</p>
+</div>
+
+<div class="game-card" onclick="openGame('PUBG')">
+<img src="https://gaming.com.np/assets/uploads/category/66e6be46cff0b1726398022.webp">
+<h3>PUBG Mobile</h3>
+<p>Top up UC</p>
+</div>
+
+<div class="game-card" onclick="openGame('ML')">
+<img src="https://m.media-amazon.com/images/M/MV5BODhlZDk5Y2EtMGFhOS00MTQ5LTgwNjgtYTI2ZmE1Y2ZjMDE2XkEyXkFqcGc@._V1_.jpg">
+<h3>Mobile Legends</h3>
+<p>Top up Diamonds</p>
+</div>
+
+<div class="game-card" onclick="openGame('TikTok')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQudmmnH6IynuZcjbVj2yD7uHYDMHwqnc9QBQ&s">
+<h3>TikTok Coins</h3>
+<p>Recharge Coins</p>
+</div>
+
+<div class="game-card" onclick="openGame('UniPin')">
+<img src="https://corp.unipin.com/assets/images/unipin-logo.png">
+<h3>UniPin Voucher</h3>
+<p>2000 Coins</p>
+</div>
+
+<div class="game-card" onclick="openGame('Facebook')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
+<h3>Facebook Followers</h3>
+<p>Buy Followers</p>
+</div>
+
+</section>
+
+<!-- PACKAGE PAGE -->
+
+<section id="game-page">
+
+<h2 id="title" style="text-align:center"></h2>
+
+<div class="game-packages" id="packages"></div>
+
+<div style="text-align:center">
+
+<input id="player" placeholder="Enter Player ID"><br>
+
+<button onclick="sendOrder()">Order via WhatsApp</button>
+
+<br><br>
+
+<button onclick="backGames()">Back</button>
+
+</div>
+
+</section>
+
+<!-- HOW TO ORDER -->
+
+<section id="how" style="padding:40px;text-align:center">
+
+<h2>How To Order</h2>
+
+<p>Select Game</p>
+<p>Choose Package</p>
+<p>Enter Player ID</p>
+<p>Send Order via WhatsApp</p>
+
+</section>
+
+<footer id="contact">
+
+<p>Sandy Gaming Store</p>
+
+<p>WhatsApp: +9779821031369</p>
+
+<p>© 2026 Sandy Gaming Store</p>
+
+</footer>
+
+<a class="whatsapp" href="https://wa.me/9779821031369">💬</a>
+
+<script>
+
+const data={
+
+"Free Fire":[
+["115 Diamonds","Rs 110"],
+["240 Diamonds","Rs 220"],
+["610 Diamonds","Rs 550"],
+["1240 Diamonds","Rs 1100"],
+["2530 Diamonds","Rs 2200"]
+],
+
+"PUBG":[
+["60 UC","Rs150"],
+["325 UC","Rs750"],
+["660 UC","Rs1500"],
+["1800 UC","Rs3750"],
+["3850 UC","Rs7500"]
+],
+
+"ML":[
+["78+8 Diamonds","Rs220"],
+["156+16 Diamonds","Rs410"],
+["250+28 Diamonds","Rs625"],
+["310+34 Diamonds","Rs730"],
+["465+51 Diamonds","Rs1100"]
+],
+
+"TikTok":[
+["200 Coins","Rs450"],
+["350 Coins","Rs700"],
+["500 Coins","Rs950"],
+["700 Coins","Rs1300"]
+],
+
+"UniPin":[
+["2000 Voucher","Rs2300"]
+],
+
+"Facebook":[
+["5,000 Followers","Rs 600"],
+["10,000 Followers","Rs 1150"],
+["25,000 Followers","Rs 2750"],
+["50,000 Followers","Rs 5250"],
+["100,000 Followers","Rs 10000"],
+["500,000 Followers","Rs 47500"],
+["1,000,000 Followers","Rs 90000"]
+]
+
+}
+
+let game=""
+let pack=""
+
+function openGame(g){
+
+game=g
+
+document.getElementById("games").style.display="none"
+
+document.getElementById("game-page").style.display="block"
+
+document.getElementById("title").innerText=g
+
+document.getElementById("player").placeholder = (g == "Facebook") ? "Enter Facebook Profile URL" : "Enter Player ID"
+
+let box=document.getElementById("packages")
+
+box.innerHTML=""
+
+data[g].forEach(p=>{
+
+let d=document.createElement("div")
+
+d.className="package-card"
+
+d.innerHTML="<h3>"+p[0]+"</h3><p>"+p[1]+"</p>"
+
+d.onclick=function(){
+
+pack=p[0]+" "+p[1]
+
+}
+
+box.appendChild(d)
+
+})
+
+}
+
+function backGames(){
+
+document.getElementById("game-page").style.display="none"
+
+document.getElementById("games").style.display="grid"
+
+}
+
+function backHome(){
+
+backGames()
+
+window.scrollTo(0,0)
+
+}
+
+function sendOrder(){
+
+let id=document.getElementById("player").value
+
+if(pack==""||id==""){
+
+alert("Select package and enter ID")
+
+return
+
+}
+
+let label = (game == "Facebook") ? "Facebook URL" : "Player ID"
+
+let msg="Hello Sandy Gaming Store%0A Service/Game: "+game+"%0A Package: "+pack+"%0A "+label+": "+id
+
+window.open("https://wa.me/9779821031369?text="+msg)
+
+}
+
+</script>
+
+</body>
+</html>
